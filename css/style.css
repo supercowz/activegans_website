@@ -112,6 +112,11 @@ background-color: #545454 !important;
 	height:800px;
 }
 
+.fluid-padding {
+	padding-left:200px;
+	padding-right:200px;
+}
+
 @media (max-width: 767px) {
     .carousel-caption  {
       font-size: 18px;
@@ -119,6 +124,10 @@ background-color: #545454 !important;
     .carousel-caption h2, .carousel-caption  h2 span, .carousel-caption  p {
     	font-size:18px;
     }
+		.fluid-padding {
+			padding-left:20px;
+			padding-right:20px;
+		}
 }
 
 @media (max-width: 992px) {
