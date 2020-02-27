@@ -5,13 +5,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ActiVegans - Local DMV Vegan Activism</title>
+  <title>ActiVegans - DMV</title>
 
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link href="css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -70,10 +69,7 @@
           </div>
           <!--End mc_embed_signup-->
 
-          <!-- <div id="iframe-container"><iframe src="https://calendar.google.com/calendar/embed?src=activegansdmv%40gmail.com&ctz=America%2FNew_York" frameborder="0" scrolling="no"></iframe></div> -->
-
-          <div id="events-container"></div>
-          
+          <div id="iframe-container"><iframe src="https://calendar.google.com/calendar/embed?src=activegansdmv%40gmail.com&ctz=America%2FNew_York" frameborder="0" scrolling="no"></iframe></div>
         </div>
     </div>
   </div>
@@ -110,48 +106,10 @@
   <!--end footer-->
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    $( document ).ready(function() {
-        $.ajax({
-            dataType: "json",
-            url: "http://veganresponses.com/vegan_calendar.json",
-            success: function(data) {
-                console.log(data);
-                
-                // data.sort(function(a, b) {
-                //     return (Date(a.event_start) = Date(b.event_start));
-                // });
-                
-                let eventDays = Object.entries(data);
-                for (let i = 0; i < eventDays.length; i++)
-                {
-                  let eventsByDays = eventDays[i];
-                  let htmlElement = "<div class=\"panel panel-default\"><div style=\"text-align:left;\" class=\"panel-heading\"><h3>" + eventsByDays[0] + "</h3></div>";
-                  htmlElement += "<div class=\"panel-body\">";
-                
-                  for (let j = 0; j < eventsByDays[1].length; j++)
-                  {
-                    let event = eventsByDays[1][j];
-                    
-                    htmlElement += "<div>"
-                    htmlElement += "<h4>" + event.summary + "</h4>";
-                    htmlElement += "<p style='margin:0;'><span style='font-weight: bold; font-size:18px;'>" + event.time_start + "</span></br>"
-                    htmlElement += event.description + "</p>";
-                    htmlElement += "</div>"
-                  }
-
-                  htmlElement += "</div>";
-                  htmlElement += "</div>";
-                  
-                  $("#events-container").append(htmlElement);
-                }
-            }
-        });
-    });
-  </script>
+  <script src="js/responsive-slider.js"></script>
 
 </body>
 
