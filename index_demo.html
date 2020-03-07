@@ -74,7 +74,7 @@
 
           <a target="_blank" href="https://calendar.google.com/calendar/embed?src=h5db8f7od6471s2fs6526ckbstq3pkcf%40import.calendar.google.com&ctz=America%2FNew_York"><button class="btn btn-default">Access The Full Calendar</button></a>
           <div id="events-container"></div>
-          
+
         </div>
     </div>
   </div>
@@ -120,34 +120,38 @@
             dataType: "json",
             url: "http://veganresponses.com/vegan_calendar.json",
             success: function(data) {
-                console.log(data);
-                
                 // data.sort(function(a, b) {
                 //     return (Date(a.event_start) = Date(b.event_start));
                 // });
-                
-                let eventDays = Object.entries(data);
-                for (let i = 0; i < eventDays.length; i++)
+
+                let events = Object.entries(data);
+                let currentDay = "";
+                let newPanel = false;
+                let htmlElement = "";
+                for (let i = 0; i < events.length; i++)
                 {
-                  let eventsByDays = eventDays[i];
-                  let htmlElement = "<div class=\"panel panel-default\"><div style=\"text-align:left;\" class=\"panel-heading\"><h3>" + eventsByDays[0] + "</h3></div>";
-                  htmlElement += "<div class=\"panel-body\">";
-                
-                  for (let j = 0; j < eventsByDays[1].length; j++)
+                  let event = events[i][1];
+                  if (currentDay !== event.date_start)
                   {
-                    let event = eventsByDays[1][j];
-                    
-                    htmlElement += "<div>"
-                    htmlElement += "<h4>" + event.summary + "</h4>";
-                    htmlElement += "<p style='margin:0;'><span style='font-weight: bold; font-size:18px;'>" + event.time_start + "</span></br>"
-                    htmlElement += event.description + "</p>";
-                    htmlElement += "</div>"
+                    if (i !== 0)
+                    {
+                      htmlElement += "</div>";
+                      htmlElement += "</div>";
+                      $("#events-container").append(htmlElement);
+                      htmlElement = "";
+                    }
+
+                    htmlElement += "<div class=\"panel panel-default\"><div style=\"text-align:left;\" class=\"panel-heading\"><h3>" + event.date_start + "</h3></div>";
+                    htmlElement += "<div class=\"panel-body\">";
                   }
 
-                  htmlElement += "</div>";
-                  htmlElement += "</div>";
-                  
-                  $("#events-container").append(htmlElement);
+                  currentDay = event.date_start;
+
+                  htmlElement += "<div>"
+                  htmlElement += "<h4>" + event.summary + "</h4>";
+                  htmlElement += "<p style='margin:0;'><span style='font-weight: bold; font-size:18px;'>" + event.time_start + "</span></br>"
+                  htmlElement += event.description + "</p>";
+                  htmlElement += "</div>"
                 }
             }
         });
