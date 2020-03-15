@@ -6,6 +6,8 @@ import requests
 import json
 import os
 import configparser
+import re
+import cgi
 
 # Set the timezone we are going to use
 eastern = timezone('US/Eastern')
@@ -19,9 +21,36 @@ class Event:
         self.date_end = date_end.dt.astimezone(eastern).strftime("%A, %B %d")
         self.time_start = date_start.dt.astimezone(eastern).strftime("%I:%M%p")
         self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
-        self.summary = summary
-        self.description = description.replace('\n', '<br/>')
         self.location = location
+        self.description = self.__adjustDescription(description)
+        self.summary = self.__adjustSummary(description, summary)
+
+    def __adjustDescription(self, description):
+        # We don't want to write html directly from whatever we see in the JSON file.
+        description = cgi.escape(description)
+
+        # Replace all URLS with clickable links.
+        pattern = re.compile(r"(http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)")
+        description = pattern.sub(r"<a href='\1'>\1</a>", description)
+        
+        # convert \n to <br/>
+        description = description.replace('\n', '<br/>')
+
+        return description
+
+    def __adjustSummary(self, description, summary):
+        facebookEventUrl = self.__getFacebookEventUrl(description)
+        if (facebookEventUrl != None):
+            return "<a href='" + facebookEventUrl + "'>" + summary + "</a>"
+        else:
+            return summary
+
+    def __getFacebookEventUrl(self, description):
+        urls = re.findall(r"https?://www\.facebook\.com/events/\d+/", description)
+        if (len(urls) == 1):
+            return urls[0]
+        else:
+            return None
 
 # We don't want to include events that have already occured.
 def removePastEvents(events):
@@ -76,7 +105,6 @@ def main():
 
     # Write the final JSON write_file
     writeJsonFile(events)
-
 
 # initialize the App Settings
 config = configparser.ConfigParser()
