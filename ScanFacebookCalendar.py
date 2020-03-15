@@ -1,5 +1,5 @@
 from icalendar import Calendar
-from datetime import *
+from datetime import datetime, timedelta
 from pytz import timezone
 
 import requests
@@ -27,10 +27,9 @@ def removePastEvents(events):
     eventsToReturn = []
     today = utc.localize(datetime.now())
     for event in events:
-        if ((event.fullenddate) >= today):
+        if ((event.fullstartdate + timedelta(hours=8)) >= today):
             eventsToReturn.append(event)
-        else:
-            print(str(event.fullenddate) + " :: " +  str(today))
+            
     return eventsToReturn
 
 def writeJsonFile(events):
