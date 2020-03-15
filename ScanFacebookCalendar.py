@@ -33,6 +33,9 @@ class Event:
 
         if (len(description) > 300):
             description = description[0:300] + "..."
+
+        # convert \n to <br/>
+        description = description.replace('\n', '<br/>')
         
         return description
 
