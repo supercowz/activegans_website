@@ -23,8 +23,18 @@ class Event:
         self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
         self.location = location
         self.summary = summary
+        self.short_description = self.__adjustShortDescription(description)
         self.facebook_event_url = self.__getFacebookEventUrl(description)
         self.description = self.__adjustDescription(description)
+
+    def __adjustShortDescription(self, description):
+        # We don't want to write html directly from whatever we see in the JSON file.
+        description = cgi.escape(description)
+
+        if (len(description) > 300):
+            description = description[0:300] + "..."
+        
+        return description
 
     def __adjustDescription(self, description):
         # We don't want to write html directly from whatever we see in the JSON file.
