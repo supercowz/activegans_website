@@ -22,8 +22,9 @@ class Event:
         self.time_start = date_start.dt.astimezone(eastern).strftime("%I:%M%p")
         self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
         self.location = location
+        self.summary = summary
+        self.facebook_event_url = self.__getFacebookEventUrl(description)
         self.description = self.__adjustDescription(description)
-        self.summary = self.__adjustSummary(description, summary)
 
     def __adjustDescription(self, description):
         # We don't want to write html directly from whatever we see in the JSON file.
@@ -37,13 +38,6 @@ class Event:
         description = description.replace('\n', '<br/>')
 
         return description
-
-    def __adjustSummary(self, description, summary):
-        facebookEventUrl = self.__getFacebookEventUrl(description)
-        if (facebookEventUrl != None):
-            return "<a href='" + facebookEventUrl + "'>" + summary + "</a>"
-        else:
-            return summary
 
     def __getFacebookEventUrl(self, description):
         urls = re.findall(r"https?://www\.facebook\.com/events/\d+/", description)

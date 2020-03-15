@@ -148,7 +148,12 @@
                   currentDay = event.date_start;
 
                   htmlElement += "<div>"
-                  htmlElement += "<h4>" + event.summary + "</h4>";
+                  
+                  if (event.facebook_event_url)
+                    htmlElement += "<h4><a href='" + event.facebook_event_url + "'>" + event.summary + "</a></h4>";
+                  else
+                    htmlElement += "<h4>" + event.summary + "</h4>";
+
                   htmlElement += "<div style='margin:0; padding:10px 0;'><span style='font-weight: bold; font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</span></div>";
 
                   if (event.location)
