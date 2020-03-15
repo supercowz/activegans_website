@@ -350,7 +350,9 @@ box-shadow: 1px 2px 2px 4px rgba(204,204,204,1);
   border-bottom: 1px solid transparent;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  text-align:center;
+  text-align:left;
+  font-size:22px;
+  font-weight: 400;
 }
 
 .panel-default {
