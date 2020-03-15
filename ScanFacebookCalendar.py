@@ -20,7 +20,7 @@ class Event:
         self.time_start = date_start.dt.astimezone(eastern).strftime("%I:%M%p")
         self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
         self.summary = summary
-        self.description = description
+        self.description = description.replace('\n', '<br/>')
 
 # We don't want to include events that have already occured.
 def removePastEvents(events):
