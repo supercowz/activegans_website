@@ -143,44 +143,6 @@ background-color: #545454 !important;
 		}
 }
 
-.carousel-inner .form-inline .form-group .btn-livedemo {
-	padding:20px 60px;
-	font-size:20px;
-	background:#93b8aa;
-	color:#fff;
-	border-radius:0;
-	border-color:#fff;
-	text-transform:uppercase;
-}
-
-.carousel-inner .form-inline .form-group .btn-livedemo:hover {
-	color:#fff;
-	opacity: 0.8;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
-}
-
-.carousel-inner .form-inline .form-group .btn-getnow {
-	padding:20px 60px;
-	font-size:20px;
-	background:#fff;
-	color:#272727;
-	border-radius:0;
-	text-transform:uppercase;
-}
-
-.carousel-inner .form-inline .form-group .btn-getnow:hover {
-	color:#fff;
-	border-color:#fff;
-	background:#93b8aa;
-	-webkit-transition: color 300ms, background-color 300ms;
-  -moz-transition: color 300ms, background-color 300ms;
-  -o-transition:  color 300ms, background-color 300ms;
-  transition:  color 300ms, background-color 300ms;
-}
-
 .form-inline {
 	margin-top:50px;
 }
@@ -525,9 +487,11 @@ address br {
 }
 
 .link-list ul,li,a {
-	color:#000;
+	color: #93b8aa;
 	list-style:none;
-
+	font-weight:bold;
+	font-style: italic;
+	cursor:pointer;
 }
 .copyright {
 	text-align:center;
