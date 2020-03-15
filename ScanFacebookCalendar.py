@@ -12,7 +12,7 @@ eastern = timezone('US/Eastern')
 utc = timezone('UTC')
 
 class Event:
-    def __init__(self, date_start, date_end, summary, description):
+    def __init__(self, date_start, date_end, summary, description, location):
         self.fullstartdate = date_start.dt.astimezone(eastern)
         self.fullenddate = date_end.dt.astimezone(eastern)
         self.date_start = date_start.dt.astimezone(eastern).strftime("%A, %B %d")
@@ -21,6 +21,7 @@ class Event:
         self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
         self.summary = summary
         self.description = description.replace('\n', '<br/>')
+        self.location = location
 
 # We don't want to include events that have already occured.
 def removePastEvents(events):
@@ -53,7 +54,8 @@ def convertCalendarToListOfEvents(gcal):
             date_end = component.get('dtend')
             summary = component.get('summary')
             description = component.get('description')
-            events.append(Event(date_start, date_end, summary, description))
+            location = component.get('location')
+            events.append(Event(date_start, date_end, summary, description, location))
     return events
 
 def main():

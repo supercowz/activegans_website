@@ -118,7 +118,7 @@
     $( document ).ready(function() {
         $.ajax({
             dataType: "json",
-            url: "vegan_calendar.json",
+            url: "http://veganresponses.com/vegan_calendar.json",
             success: function(data) {
                 // data.sort(function(a, b) {
                 //     return (Date(a.event_start) = Date(b.event_start));
@@ -149,7 +149,8 @@
 
                   htmlElement += "<div>"
                   htmlElement += "<h4>" + event.summary + "</h4>";
-                  htmlElement += "<p style='margin:0;'><span style='font-weight: bold; font-size:18px;'>" + event.time_start + " - " + event.time_end + "</span></br>"
+                  htmlElement += "<div style='margin:0; padding:10px 0;'><span style='font-weight: bold; font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</span></div>";
+                  htmlElement += "<div style='font-size:18px; margin-bottom: 15px;'><a href='https://maps.google.com?q=" + event.location + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
                   htmlElement += event.description + "</p>";
                   htmlElement += "</div>"
                 }
