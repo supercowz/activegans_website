@@ -17,8 +17,8 @@ class Event:
         self.fullenddate = date_end.dt.astimezone(eastern)
         self.date_start = date_start.dt.astimezone(eastern).strftime("%A, %B %d")
         self.date_end = date_end.dt.astimezone(eastern).strftime("%A, %B %d")
-        self.time_start = date_start.dt.astimezone(eastern).strftime("%H:%M:00")
-        self.time_end = date_end.dt.astimezone(eastern).strftime("%H:%M:00")
+        self.time_start = date_start.dt.astimezone(eastern).strftime("%I:%M%p")
+        self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
         self.summary = summary
         self.description = description
 
@@ -29,7 +29,7 @@ def removePastEvents(events):
     for event in events:
         if ((event.fullstartdate + timedelta(hours=8)) >= today):
             eventsToReturn.append(event)
-            
+
     return eventsToReturn
 
 def writeJsonFile(events):
