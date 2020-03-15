@@ -150,7 +150,7 @@
                   htmlElement += "<div>"
                   htmlElement += "<h4>" + event.summary + "</h4>";
                   htmlElement += "<div style='margin:0; padding:10px 0;'><span style='font-weight: bold; font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</span></div>";
-                  htmlElement += "<div style='font-size:18px; margin-bottom: 15px;'><a href='https://maps.google.com?q=" + event.location + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
+                  htmlElement += "<div style='font-size:18px; margin-bottom: 15px;'><a href='https://maps.google.com?q=" + encodeURIComponent(event.location) + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
                   htmlElement += event.description + "</p>";
                   htmlElement += "</div>"
                 }
