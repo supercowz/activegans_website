@@ -152,10 +152,10 @@
                   else
                     htmlElement += "<h4 class='event-title'>" + event.summary + "</h4>";
 
-                  htmlElement += "<div style='margin:0; padding:10px 0;'><span style='font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</span></div>";
-
                   if (event.location)
-                    htmlElement += "<div style='font-size:18px; margin-bottom: 15px;'><a target='_blank' href='https://maps.google.com?q=" + encodeURIComponent(event.location) + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
+                    htmlElement += "<div style='font-size:18px; margin:0; padding:10px 0;'><a target='_blank' href='https://maps.google.com?q=" + encodeURIComponent(event.location) + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
+
+                    htmlElement += "<div style='margin-bottom: 15px; font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</div>";
                   
                   htmlElement += "<span style='display:block;' id='readmorepreview" + i + "'>" + event.short_description + "</span>";
                   htmlElement += "<span style='display:none;' id='readmorefull" + i + "'>" + event.description + "</span>";
