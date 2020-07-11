@@ -30,6 +30,10 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: bold;
     color: #93b8aa;
 }
+.page-heading-container {
+	margin-top:30px;
+	text-align:center;
+}
 
 .event-title {
 	font-weight: bold;
