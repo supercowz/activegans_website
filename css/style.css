@@ -26,13 +26,13 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'Raleway', Arial, sans-serif;
     font-size: 50px;
     text-transform: uppercase;
-    letter-spacing: 30px;
+    letter-spacing: 20px;
     font-weight: bold;
-    color: #93b8aa;
+	color: #93b8aa;
+	line-height: 44px;
 }
 .page-heading-container {
 	margin-top:30px;
-	text-align:center;
 }
 
 .event-title {
