@@ -11,6 +11,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link href="css/style.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -26,7 +27,9 @@
             </div>
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="index.html">Home</a></li>
+                <li role="presentation" class="active"><a href="index.html">Events</a></li>
+                <li role="presentation" class="active"><a target="_blank" href="https://calendar.google.com/calendar/embed?src=h5db8f7od6471s2fs6526ckbstq3pkcf%40import.calendar.google.com&ctz=America%2FNew_York">Calendar</a></li>
+                <li role="presentation" class="active"><a href="about.html">About</a></li>
               </ul>
             </div>
           </div>
@@ -36,40 +39,45 @@
   </header>
 
 
-  <div class="container-fluid fluid-padding">
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
-          <p style="font-size:18px; padding:15px 0px;">Thanks for your interest in being an ActiveVegan! 🌱✌️  Sign up here to keep up to date on all the local DMV actions.</p>
-
-          <!-- Begin Mailchimp Signup Form -->
-          <div id="mc_embed_signup">
-          <form action="https://gmail.us20.list-manage.com/subscribe/post?u=cfb643994a18170a5174a261c&amp;id=a7d9b3d0cb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-          <div id="mc_embed_signup_scroll">
-            <h2>Subscribe</h2>
-            <div class="mc-field-group">
-            	<label style="width:125px;margin-bottom:15px;" for="mce-EMAIL">Email Address </label>
-            	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+        <div class="col-lg-3 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">Stay Updated!</div>
+            <div class="panel-body">
+              <p style="font-size:18px; padding:15px 0px;">Thanks for your interest in being an ActiveVegan! 🌱✌️  Sign up here to keep up to date on all the local DMV actions.</p>
+              <!-- Begin Mailchimp Signup Form -->
+              <div id="mc_embed_signup">
+                <form action="https://gmail.us20.list-manage.com/subscribe/post?u=cfb643994a18170a5174a261c&amp;id=a7d9b3d0cb" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>          
+                <div id="mc_embed_signup_scroll">
+                  <div class="mc-field-group">
+                    <label style="width:125px;margin-bottom:15px;" for="mce-EMAIL">Email Address </label>
+                    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                  </div>
+                  <div class="mc-field-group">
+                    <label style="width:125px;margin-bottom:15px;" for="mce-FNAME">First Name </label>
+                    <input type="text" value="" name="FNAME" class="" id="mce-FNAME">
+                  </div>
+                  <div class="mc-field-group">
+                    <label style="width:125px;margin-bottom:15px; for="mce-LNAME">Last Name </label>
+                    <input type="text" value="" name="LNAME" class="" id="mce-LNAME">
+                  </div>
+                  <div id="mce-responses" class="clear">
+                      <div class="response" id="mce-error-response" style="display:none"></div>
+                      <div class="response" id="mce-success-response" style="display:none"></div>
+                  </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_cfb643994a18170a5174a261c_a7d9b3d0cb" tabindex="-1" value=""></div>
+                  <div class="clear"><input style="margin-top:10px;" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default"></div>
+                </div>
+                </form>
+              </div>
+              <!--End mc_embed_signup-->
             </div>
-            <div class="mc-field-group">
-            	<label style="width:125px;margin-bottom:15px;" for="mce-FNAME">First Name </label>
-            	<input type="text" value="" name="FNAME" class="" id="mce-FNAME">
-            </div>
-            <div class="mc-field-group">
-            	<label style="width:125px;margin-bottom:15px; for="mce-LNAME">Last Name </label>
-            	<input type="text" value="" name="LNAME" class="" id="mce-LNAME">
-            </div>
-            <div id="mce-responses" class="clear">
-            		<div class="response" id="mce-error-response" style="display:none"></div>
-            		<div class="response" id="mce-success-response" style="display:none"></div>
-            </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_cfb643994a18170a5174a261c_a7d9b3d0cb" tabindex="-1" value=""></div>
-            <div class="clear"><input style="margin-left:128px;" type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default"></div>
           </div>
-          </form>
-          </div>
-          <!--End mc_embed_signup-->
-
-          <div id="iframe-container"><iframe src="https://calendar.google.com/calendar/embed?src=activegansdmv%40gmail.com&ctz=America%2FNew_York" frameborder="0" scrolling="no"></iframe></div>
+        </div>
+        <div class="col-lg-9 col-xs-12">
+          <h3>Upcoming Events</h3>
+          <div id="events-container"></div>
         </div>
     </div>
   </div>
@@ -83,16 +91,15 @@
             <ul class="social-network">
               <li><a href="https://www.facebook.com/activegansdmv/" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-2x"></i></a></li>
               <li><a href="https://www.instagram.com/noochbaby/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-2x"></i></a></li>
-              <li><a href="https://www.instagram.com/cashewcache/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-2x"></i></a></li>
+              <li><a href="https://www.instagram.com/guts_to_cuts/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-2x"></i></a></li>
             </ul>
           </div>
           <div class="col-lg-12">
             <div class="copyright">
-              <p>&copy;ActiveVegans - All right reserved.</p>
+              <p>&copy;ActiveVegans - All rights reserved.</p>
               <div class="credits">
                 <div style="font-size:16px;">
                   Developed by <a href="https://bednarchris.com/">Chris Bednar</a>&nbsp;&nbsp;
-                  <a href="https://www.instagram.com/bednar.chris/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-1x"></i></a>&nbsp;&nbsp;
                   <a href="https://www.youtube.com/c/gutstocuts" data-placement="top" title="YouTube"><i class="fa fa-youtube fa-1x"></i></a>
               </div>
               </div>
@@ -106,10 +113,66 @@
   <!--end footer-->
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="js/jquery-2.1.1.min.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/responsive-slider.js"></script>
+  <script type="text/javascript">
+    $( document ).ready(function() {
+        $.ajax({
+            dataType: "json",
+            url: "vegan_calendar.json",
+            success: function(data) {
+                let events = Object.entries(data);
+                let currentDay = "";
+                let newPanel = false;
+                let htmlElement = "";
+                for (let i = 0; i < events.length; i++)
+                {
+                  let event = events[i][1];
+                  if (currentDay !== event.date_start)
+                  {
+                    if (i !== 0)
+                    {
+                      htmlElement += "</div>";
+                      htmlElement += "</div>";
+                      $("#events-container").append(htmlElement);
+                      htmlElement = "";
+                    }
+
+                    htmlElement += "<div class='panel panel-default'><div class='panel-heading'>" + event.date_start + "</div>";
+                    htmlElement += "<div class='panel-body' style='overflow-x:hidden;'>";
+                  }
+
+                  currentDay = event.date_start;
+
+                  htmlElement += "<div>"
+                  
+                  if (event.facebook_event_url)
+                    htmlElement += "<h4><a href='" + event.facebook_event_url + "'>" + event.summary + "</a></h4>";
+                  else
+                    htmlElement += "<h4>" + event.summary + "</h4>";
+
+                  htmlElement += "<div style='margin:0; padding:10px 0;'><span style='font-weight: bold; font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</span></div>";
+
+                  if (event.location)
+                    htmlElement += "<div style='font-size:18px; margin-bottom: 15px;'><a target='_blank' href='https://maps.google.com?q=" + encodeURIComponent(event.location) + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
+                  
+                  htmlElement += "<span style='display:block;' id='readmorepreview" + i + "'>" + event.short_description + "</span>";
+                  htmlElement += "<span style='display:none;' id='readmorefull" + i + "'>" + event.description + "</span>";
+                  htmlElement += "<a class='readmore' data-i='" + i + "' >See More</a>";
+                  htmlElement += "</div>"
+                }
+
+                $(".readmore").click(function() {
+                  let key = $(this).data("i");
+                  $("#readmorepreview" + key).hide();
+                  $("#readmorefull" + key).show();
+                  $(this).hide();
+                });
+            }
+        });
+    });
+  </script>
 
 </body>
 
