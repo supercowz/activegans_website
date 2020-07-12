@@ -28,7 +28,7 @@
             <div class="menu">
               <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="index.html">Events</a></li>
-                <li role="presentation" class="active"><a target="_blank" href="https://calendar.google.com/calendar/embed?src=h5db8f7od6471s2fs6526ckbstq3pkcf%40import.calendar.google.com&ctz=America%2FNew_York">Events</a></li>
+                <li role="presentation" class="active"><a target="_blank" href="https://calendar.google.com/calendar/embed?src=h5db8f7od6471s2fs6526ckbstq3pkcf%40import.calendar.google.com&ctz=America%2FNew_York">Calendar</a></li>
                 <li role="presentation" class="active"><a href="about.html">About</a></li>
               </ul>
             </div>
@@ -76,8 +76,10 @@
           </div>
         </div>
         <div class="col-lg-9 col-xs-12">
-          <h3>Upcoming Events</h3>
-          <div id="events-container"></div>
+          <div class="page-heading-container">
+            <div style="background-color:#545454; padding:20px 0;"><img src="img/about_logo.png"></div>
+          </div>
+          
         </div>
     </div>
   </div>
@@ -91,7 +93,7 @@
             <ul class="social-network">
               <li><a href="https://www.facebook.com/activegansdmv/" data-placement="top" title="Facebook"><i class="fa fa-facebook fa-2x"></i></a></li>
               <li><a href="https://www.instagram.com/noochbaby/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-2x"></i></a></li>
-              <li><a href="https://www.instagram.com/cashewcache/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-2x"></i></a></li>
+              <li><a href="https://www.instagram.com/guts_to_cuts/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-2x"></i></a></li>
             </ul>
           </div>
           <div class="col-lg-12">
@@ -100,7 +102,6 @@
               <div class="credits">
                 <div style="font-size:16px;">
                   Developed by <a href="https://bednarchris.com/">Chris Bednar</a>&nbsp;&nbsp;
-                  <a href="https://www.instagram.com/bednar.chris/" data-placement="top" title="Instagram"><i class="fa fa-instagram fa-1x"></i></a>&nbsp;&nbsp;
                   <a href="https://www.youtube.com/c/gutstocuts" data-placement="top" title="YouTube"><i class="fa fa-youtube fa-1x"></i></a>
               </div>
               </div>
@@ -117,63 +118,6 @@
   <script src="js/jquery-3.4.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
-  <script type="text/javascript">
-    $( document ).ready(function() {
-        $.ajax({
-            dataType: "json",
-            url: "vegan_calendar.json",
-            success: function(data) {
-                let events = Object.entries(data);
-                let currentDay = "";
-                let newPanel = false;
-                let htmlElement = "";
-                for (let i = 0; i < events.length; i++)
-                {
-                  let event = events[i][1];
-                  if (currentDay !== event.date_start)
-                  {
-                    if (i !== 0)
-                    {
-                      htmlElement += "</div>";
-                      htmlElement += "</div>";
-                      $("#events-container").append(htmlElement);
-                      htmlElement = "";
-                    }
-
-                    htmlElement += "<div class='panel panel-default'><div class='panel-heading'>" + event.date_start + "</div>";
-                    htmlElement += "<div class='panel-body' style='overflow-x:hidden;'>";
-                  }
-
-                  currentDay = event.date_start;
-
-                  htmlElement += "<div>"
-                  
-                  if (event.facebook_event_url)
-                    htmlElement += "<h4><a href='" + event.facebook_event_url + "'>" + event.summary + "</a></h4>";
-                  else
-                    htmlElement += "<h4>" + event.summary + "</h4>";
-
-                  htmlElement += "<div style='margin:0; padding:10px 0;'><span style='font-weight: bold; font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</span></div>";
-
-                  if (event.location)
-                    htmlElement += "<div style='font-size:18px; margin-bottom: 15px;'><a target='_blank' href='https://maps.google.com?q=" + encodeURIComponent(event.location) + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
-                  
-                  htmlElement += "<span style='display:block;' id='readmorepreview" + i + "'>" + event.short_description + "</span>";
-                  htmlElement += "<span style='display:none;' id='readmorefull" + i + "'>" + event.description + "</span>";
-                  htmlElement += "<a class='readmore' data-i='" + i + "' >See More</a>";
-                  htmlElement += "</div>"
-                }
-
-                $(".readmore").click(function() {
-                  let key = $(this).data("i");
-                  $("#readmorepreview" + key).hide();
-                  $("#readmorefull" + key).show();
-                  $(this).hide();
-                });
-            }
-        });
-    });
-  </script>
 
 </body>
 
