@@ -77,9 +77,9 @@
         </div>
         <div class="col-lg-9 col-xs-12">
           <div class="page-heading-container">
-            <div style="background-color:#545454; padding:20px 0;"><img src="img/about_logo.png"></div>
+            <span class="page-heading">Upcoming Events</span>
           </div>
-          
+          <div id="events-container"></div>
         </div>
     </div>
   </div>
@@ -118,6 +118,63 @@
   <script src="js/jquery-3.4.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $( document ).ready(function() {
+        $.ajax({
+            dataType: "json",
+            url: "vegan_calendar.json",
+            success: function(data) {
+                let events = Object.entries(data);
+                let currentDay = "";
+                let newPanel = false;
+                let htmlElement = "";
+                for (let i = 0; i < events.length; i++)
+                {
+                  let event = events[i][1];
+                  if (currentDay !== event.date_start)
+                  {
+                    if (i !== 0)
+                    {
+                      htmlElement += "</div>";
+                      htmlElement += "</div>";
+                      $("#events-container").append(htmlElement);
+                      htmlElement = "";
+                    }
+
+                    htmlElement += "<div class='panel panel-default'><div class='panel-heading'>" + event.date_start + "</div>";
+                    htmlElement += "<div class='panel-body' style='overflow-x:hidden;'>";
+                  }
+
+                  currentDay = event.date_start;
+
+                  htmlElement += "<div>"
+                  
+                  if (event.facebook_event_url)
+                    htmlElement += "<h3 class='event-title'><a href='" + event.facebook_event_url + "'>" + event.summary + "</a></h3>";
+                  else
+                    htmlElement += "<h3 class='event-title'>" + event.summary + "</h3>";
+
+                  if (event.location)
+                    htmlElement += "<div style='font-size:18px; margin:0; padding:10px 0;'><a target='_blank' href='https://maps.google.com?q=" + encodeURIComponent(event.location) + "'><span class='glyphicon glyphicon-map-marker' aria-hidden='true'></span> " + event.location + "</a></div>";
+
+                  htmlElement += "<div style='margin-bottom: 15px; font-size:18px;'><span class='glyphicon glyphicon-time' aria-hidden='true'></span> " + event.time_start + " - " + event.time_end + "</div>";
+                  
+                  htmlElement += "<span style='display:block;' id='readmorepreview" + i + "'>" + event.short_description + "</span>";
+                  htmlElement += "<span style='display:none;' id='readmorefull" + i + "'>" + event.description + "</span>";
+                  htmlElement += "<a class='readmore' data-i='" + i + "' >See More</a>";
+                  htmlElement += "</div>"
+                }
+
+                $(".readmore").click(function() {
+                  let key = $(this).data("i");
+                  $("#readmorepreview" + key).hide();
+                  $("#readmorefull" + key).show();
+                  $(this).hide();
+                });
+            }
+        });
+    });
+  </script>
 
 </body>
 
