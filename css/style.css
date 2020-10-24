@@ -11,8 +11,7 @@
 body {
 	font-family:'Open Sans', Arial, sans-serif;
 	font-size:14px;
-	font-weight:300;
-	line-height:1.6em;
+	line-height:2em;
 	color:#000;
 	background-color:#fff;
 	overflow-x: hidden;
@@ -26,7 +25,7 @@ h1,h2,h3,h4,h5,h6 {
     font-family: 'Raleway', Arial, sans-serif;
     font-size: 50px;
     text-transform: uppercase;
-    letter-spacing: 20px;
+    letter-spacing: 6px;
     font-weight: bold;
 	color: #93b8aa;
 	line-height: 44px;
@@ -502,7 +501,7 @@ address br {
 	margin-top:30px;
 }
 
-.link-list ul,li,a {
+.link-list ul, a {
 	color: #93b8aa;
 	list-style:none;
 	cursor:pointer;
@@ -524,6 +523,9 @@ a.readmore
 .sub-footer {
 	 background-color: #93b8aa;
 }
+.social-network {
+	padding: 0;
+}
 ul.social-network {
 	list-style:none;
 	margin-top:30px;
@@ -537,4 +539,11 @@ ul.social-network li {
 }
 ul.social-network li a {
 	color:#fff;
+}
+.about-container {
+	font-size:18px; padding:15px 0px;
+}
+
+.about-container p {
+	padding: 10px;
 }
