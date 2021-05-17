@@ -552,6 +552,7 @@ ul.social-network li a {
 	color: #999999;
 	text-align:right;
 	font-style: italic;
+	display: block;
 }
 .img-credit::before {
   content: "Photo Credit: ";
