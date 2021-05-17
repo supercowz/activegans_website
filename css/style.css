@@ -548,3 +548,11 @@ ul.social-network li a {
 	width: 683px;
 	height: auto;
 }
+.img-credit {
+	color: #999999;
+	text-align:right;
+	font-style: italic;
+}
+.img-credit::before {
+  content: "Photo Credit: ";
+}
