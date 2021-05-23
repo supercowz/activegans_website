@@ -1,0 +1,39 @@
+		  <p class="kill-counter">
+
+			<span id="count0">0</span> marine animals<br>
+
+			<span id="count1">0</span> chickens<br>
+
+			<span id="count2">0</span> ducks<br>
+
+			<span id="count3">0</span> pigs<br>
+
+			<span id="count4">0</span> rabbits<br>
+
+			<span id="count5">0</span> turkeys<br>
+
+			<span id="count6">0</span> geese<br>
+
+			<span id="count7">0</span> sheep<br>
+
+			<span id="count8">0</span> goats<br>
+
+			<span id="count9">0</span> cows / calves<br>
+
+			<span id="count10">0</span> rodents<br>
+
+			<span id="count11">0</span> pigeons/other birds<br>
+
+			<span id="count12">0</span> buffaloes<br>
+
+			<span id="count13">0</span> dogs<br>
+
+			<span id="count14">0</span> cats<br>
+
+			<span id="count15">0</span> horses<br>
+
+			<span id="count16">0</span> donkeys and mules<br>
+
+			<span id="count17">0</span> camels / camelids
+
+		</p>
