@@ -557,3 +557,10 @@ ul.social-network li a {
 .img-credit::before {
   content: "Photo Credit: ";
 }
+
+.read-articles-container {
+	font-size: 20px;
+	letter-spacing: 0.025em;
+	color: #33333;
+	text-align:center;
+}
