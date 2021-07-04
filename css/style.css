@@ -516,9 +516,6 @@ address br {
 	padding:50px;
 	text-align:center;
 }
-.widget p,ul {
-	margin-top:15px;
-}
 
 .link-list ul, a {
 	color: #93b8aa;
