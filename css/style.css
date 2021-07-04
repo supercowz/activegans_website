@@ -60,6 +60,10 @@ p {
 	color:#000;
 }
 
+li {
+	margin-bottom: 5px;
+}
+
 a:hover {
 	text-decoration:none;
 }
@@ -513,7 +517,7 @@ address br {
 	text-align:center;
 }
 .widget p,ul {
-	margin-top:30px;
+	margin-top:15px;
 }
 
 .link-list ul, a {
