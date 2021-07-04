@@ -20,20 +20,24 @@ body {
 h1,h2,h3,h4,h5,h6 {
 	color:#545454;
 	line-height:1.1em;
-	margin-top: 40px;
 }
 
 h1,h2 {
 	font-weight: bold;
+	margin-top: 40px;
 }
 
 h3,h4,h5,h6 {
 	font-weight: 600;
-	margin-top: 35px !important;
+}
+
+h3 {
+	margin-top: 35px;
 }
 
 h4,h5,h6 {
 	font-style: italic;
+	margin-top: 25px;
 }
 
 .page-heading {
@@ -515,9 +519,6 @@ address br {
 	margin-top:10px;
 	padding:50px;
 	text-align:center;
-}
-.widget p,ul {
-	margin-top:15px;
 }
 
 .link-list ul, a {
