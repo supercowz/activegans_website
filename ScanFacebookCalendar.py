@@ -113,8 +113,8 @@ def isEventMultiDay(date_start, date_end):
     return date_start.date() != date_end.date()
 
 def getEventsForMultiDay(date_start, date_end, summary, description, location):
-    datetime_start = date_start.dt.astimezone(utc)
-    datetime_end = date_end.dt.astimezone(utc)
+    datetime_start = date_start.dt
+    datetime_end = date_end.dt
 
     events = []
     theRange = (datetime_end - datetime_start).days + 1
