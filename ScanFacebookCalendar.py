@@ -15,12 +15,20 @@ utc = timezone('UTC')
 
 class Event:
     def __init__(self, date_start, date_end, summary, description, location):
-        self.fullstartdate = date_start.dt.astimezone(eastern)
-        self.fullenddate = date_end.dt.astimezone(eastern)
-        self.date_start = date_start.dt.astimezone(eastern).strftime("%A, %B %d")
-        self.date_end = date_end.dt.astimezone(eastern).strftime("%A, %B %d")
-        self.time_start = date_start.dt.astimezone(eastern).strftime("%I:%M%p")
-        self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
+        if isinstance(date_start, datetime) and isinstance(date_start, datetime):
+            self.fullstartdate = date_start.astimezone(eastern)
+            self.fullenddate = date_end.astimezone(eastern)
+            self.date_start = date_start.astimezone(eastern).strftime("%A, %B %d")
+            self.date_end = date_end.astimezone(eastern).strftime("%A, %B %d")
+            self.time_start = date_start.astimezone(eastern).strftime("%I:%M%p")
+            self.time_end = date_end.astimezone(eastern).strftime("%I:%M%p")
+        else:
+            self.fullstartdate = date_start.dt.astimezone(eastern)
+            self.fullenddate = date_end.dt.astimezone(eastern)
+            self.date_start = date_start.dt.astimezone(eastern).strftime("%A, %B %d")
+            self.date_end = date_end.dt.astimezone(eastern).strftime("%A, %B %d")
+            self.time_start = date_start.dt.astimezone(eastern).strftime("%I:%M%p")
+            self.time_end = date_end.dt.astimezone(eastern).strftime("%I:%M%p")
         self.location = location
         self.summary = summary
         self.short_description = self.__adjustShortDescription(description)
@@ -91,7 +99,27 @@ def convertCalendarToListOfEvents(gcal):
             summary = component.get('summary')
             description = component.get('description')
             location = component.get('location')
-            events.append(Event(date_start, date_end, summary, description, location))
+            # If events are multi-day, split them up.  
+            if isEventMultiDay(date_start, date_end):
+                eventsToAppend = getEventsForMultiDay(date_start, date_end, summary, description, location)
+                events = events + eventsToAppend
+            else:
+                events.append(Event(date_start, date_end, summary, description, location))
+    return events
+
+def isEventMultiDay(date_start, date_end):
+    return date_start.dt.date() != date_end.dt.date()
+
+def getEventsForMultiDay(date_start, date_end, summary, description, location):
+    datetime_start = date_start.dt
+    datetime_end = date_end.dt
+
+    events = []
+    theRange = (datetime_end - datetime_start).days + 1
+    for i in range(theRange):
+        new_date_start = datetime_start if i == 0 else datetime(datetime_start.year, datetime_start.month, datetime_start.day) + timedelta(days=i+1)
+        new_date_end = datetime_end if i == theRange-1 else datetime(datetime_start.year, datetime_start.month, datetime_start.day, 23, 59, 0, 0) + timedelta(days=i+1)
+        events.append(Event(new_date_start, new_date_end, summary, description, location))
     return events
 
 def main():
