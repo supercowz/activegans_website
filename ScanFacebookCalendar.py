@@ -38,7 +38,7 @@ class Event:
 
     def __adjustShortDescription(self, description):
         # We don't want to write html directly from whatever we see in the JSON file.
-        description = cgi.escape(description)
+        # description = cgi.escape(description)
 
         if (len(description) > 300):
             description = description[0:300] + "..."
@@ -50,7 +50,7 @@ class Event:
 
     def __adjustDescription(self, description):
         # We don't want to write html directly from whatever we see in the JSON file.
-        description = cgi.escape(description)
+        # description = cgi.escape(description)
 
         # Replace all URLS with clickable links.
         pattern = re.compile(r"(http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)")
@@ -120,8 +120,8 @@ def getEventsForMultiDay(date_start, date_end, summary, description, location):
     events = []
     theRange = (datetime_end - datetime_start).days + 1
     for i in range(theRange):
-        new_date_start = datetime_start if i == 0 else datetime(datetime_start.year, datetime_start.month, datetime_start.day, 0, 0, 0, 0, eastern) + timedelta(days=i+1)
-        new_date_end = datetime_end if i == theRange-1 else datetime(datetime_start.year, datetime_start.month, datetime_start.day, 23, 59, 0, 0, eastern) + timedelta(days=i+1)
+        new_date_start = datetime_start if i == 0 else datetime(datetime_start.year, datetime_start.month, datetime_start.day, 0, 0, 0, 0, eastern) + timedelta(days=i)
+        new_date_end = datetime_end if i == theRange-1 else datetime(datetime_start.year, datetime_start.month, datetime_start.day, 23, 59, 0, 0, eastern) + timedelta(days=i)
         events.append(Event(new_date_start, new_date_end, summary, description, location))
     return events
 
