@@ -17,12 +17,12 @@ class Event:
     def __init__(self, date_start, date_end, summary, description, location):
         # Currently, this means the event was generated as a multiday event.
         if isinstance(date_start, datetime) and isinstance(date_start, datetime):
-            self.fullstartdate = date_start
-            self.fullenddate = date_end
-            self.date_start = date_start.strftime("%A, %B %d")
-            self.date_end = date_end.strftime("%A, %B %d")
-            self.time_start = date_start.strftime("%I:%M%p")
-            self.time_end = date_end.strftime("%I:%M%p")
+            self.fullstartdate = date_start.astimezone(eastern)
+            self.fullenddate = date_end.astimezone(eastern)
+            self.date_start = date_start.astimezone(eastern).strftime("%A, %B %d")
+            self.date_end = date_end.astimezone(eastern).strftime("%A, %B %d")
+            self.time_start = date_start.astimezone(eastern).strftime("%I:%M%p")
+            self.time_end = date_end.astimezone(eastern).strftime("%I:%M%p")
         else:
             self.fullstartdate = date_start.dt.astimezone(eastern)
             self.fullenddate = date_end.dt.astimezone(eastern)
@@ -38,7 +38,7 @@ class Event:
 
     def __adjustShortDescription(self, description):
         # We don't want to write html directly from whatever we see in the JSON file.
-        description = cgi.escape(description)
+        # description = cgi.escape(description)
 
         if (len(description) > 300):
             description = description[0:300] + "..."
@@ -50,7 +50,7 @@ class Event:
 
     def __adjustDescription(self, description):
         # We don't want to write html directly from whatever we see in the JSON file.
-        description = cgi.escape(description)
+        # description = cgi.escape(description)
 
         # Replace all URLS with clickable links.
         pattern = re.compile(r"(http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)")
@@ -120,9 +120,9 @@ def getEventsForMultiDay(date_start, date_end, summary, description, location):
     events = []
     theRange = (datetime_end - datetime_start).days + 1
     for i in range(theRange):
-        new_date_start = datetime_start if i == 0 else datetime(datetime_start.year, datetime_start.month, datetime_start.day) + timedelta(days=i+1)
-        new_date_end = datetime_end if i == theRange-1 else datetime(datetime_start.year, datetime_start.month, datetime_start.day, 23, 59, 0, 0) + timedelta(days=i+1)
-        events.append(Event(new_date_start.astimezone(eastern), new_date_end.astimezone(eastern), summary, description, location))
+        new_date_start = datetime_start if i == 0 else datetime(datetime_start.year, datetime_start.month, datetime_start.day).astimezone(eastern) + timedelta(days=i+1)
+        new_date_end = datetime_end if i == theRange-1 else datetime(datetime_start.year, datetime_start.month, datetime_start.day, 23, 59, 0, 0).astimezone(eastern) + timedelta(days=i+1)
+        events.append(Event(new_date_start, new_date_end, summary, description, location))
     return events
 
 def main():
